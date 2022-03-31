@@ -1,0 +1,40 @@
+{% extends 'common/base.html' %}
+{% block title %}Chat Room {% endblock %}
+{% block body %}
+    <div class="general-board">
+        <h1>Room Name: {{ room_name }}</h1>
+        <input type="text" id="userInput" width="100vw"><br>
+        <button id="sendBtn">Send!</button>
+        <div class="article" id="chat_log" style="font-size: 1.2em">
+            {% for msg in messages %}
+                <p>{{ msg.message_text }}</p>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}
+{% block foot %}
+    <script>
+        const currentLocation = window.location;
+        if(currentLocation.protocol === 'http:')
+            protocol = 'ws:';
+        else
+            protocol = 'wss:';
+        const host = currentLocation.host;
+        ws = new WebSocket(`${protocol}//${host}/ws/chat/room/{{ room_name }}/`);
+        ws.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            const p = document.createElement('p');
+            p.innerHTML = `${data.username}(${data.date}): ${data.message}`
+            const chat_log = document.getElementById('chat_log');
+            chat_log.appendChild(p)
+        }
+        function sendMessage() {
+            const inputTag = document.getElementById('userInput');
+            const input = inputTag.value;
+            ws.send(JSON.stringify({"message": input}))
+            inputTag.value = ''
+        }
+        document.getElementById("sendBtn").addEventListener("click", sendMessage);
+    </script>
+{% endblock %}

@@ -1,0 +1,18 @@
+[Unit]
+Description=WolfSite, a Django website made for fun.
+After=network-online.target
+Wants=network-online.target
+
+
+[Service]
+User=lata
+Group=lata
+Type=simple
+WorkingDirectory=/opt/WolfSite
+ExecStart=/bin/sh ./bin/run.sh
+ProtectSystem=yes
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}
+    Home
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div style="text-align: center">
+        <img src="{% static 'img/wolftao_inverted.png' %}" alt="" width="300vw" height="300vh"
+             style="margin: 0 auto">
+    </div>
+    <div class="board">
+    <h1>WolfSite</h1>
+    <div style="font-size: 1.3em">
+        Hi there{% if user.is_authenticated %} {{ user.username }}{% endif %}, welcome to WolfSite.<br>
+        WolfSite is a Django website made for fun that runs mainly on GNU/Linux.<br>
+        If there is something wrong, contact me with email: shinji [at] shinji.rocks
+    </div>
+    <h3>Server Kernel Version: {{ kv }}</h3>
+
+    <h3>Server Timezone: UTC</h3>
+
+{% endblock %}
+
+</div>

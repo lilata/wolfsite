@@ -1,0 +1,7 @@
+django==3.2.*
+daphne
+django-dotenv
+channels
+channels-redis
+Pillow
+requests

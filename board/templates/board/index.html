@@ -1,0 +1,57 @@
+{% extends 'common/base.html' %}
+{% block title %}
+    Board
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div class="general-board">
+        <a class="pure-button" href="{% url 'board_add_thread' %}">
+            New Thread
+        </a>
+        <hr>
+
+        {% for thread in threads %}
+            <br>
+            <div style="border: #00ff00 3px solid">
+                <div class="pure-g">
+                    {% if thread.image %}
+                        <div class="pure-u-2-5">
+                            <img src="{{ thread.image.url }}" alt="">
+                        </div>
+                    {% endif %}
+                    <div class="pure-u-3-5 bgdark">
+                        Posted by
+                        {% if thread.user %}{{ thread.user }}{% else %}Anonymous{% endif %}, at {{ thread.created }} UTC
+                        <br>
+                        #{{ thread.pk }}
+                        <br>
+                        <a href="{% url 'board_thread' thread.pk %}" class="pure-button">View Thread...</a>
+                        <br>
+                        <p style="color: #ffffcc; ">{{ thread.text }}</p>
+                    </div>
+                </div>
+                <hr>
+                {% for r in thread.some_replies %}
+                 <div class="pure-g">
+                    {% if r.image %}
+                        <div class="pure-u-2-5">
+                            <img src="{{ r.image.url }}">
+                        </div>
+                    {% endif %}
+                    <div class="pure-u-3-5 bgdark">
+                        Reply posted by {% if r.user %}{{ r.user }}{% else %}Anonymous{% endif %}, at {{ r.created }} UTC
+                        <br>
+                        #{{ r.pk }}
+                        <br>
+                        <p style="color: #ffffcc; ">{{ r.text }}</p>
+                    </div>
+                </div>
+                    <hr>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

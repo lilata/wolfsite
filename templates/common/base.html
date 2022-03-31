@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'img/wolftao_inverted.png' %}">
+    <title>{% block title %}{% endblock %}|WolfSite</title>
+    {% include 'common/includes/css.html' %}
+</head>
+<body style="background: url('{% url "randbg" %}') no-repeat center center fixed;   -webkit-background-size: cover;  -moz-background-size: cover;  -o-background-size: cover;  background-size: cover;">
+{% block topbar %}
+    {% include 'common/includes/topbar.html' %}
+{% endblock %}
+{% block body %}
+
+{% endblock %}
+</body>
+{% block foot %}
+{% endblock %}
+</html>

@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}
+    Chat
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div style="text-align: center" xmlns="http://www.w3.org/1999/html">
+        <img src="{% static 'img/wolftao_inverted.png' %}" alt="" width="300vw" height="300vh"
+             style="margin: 0 auto">
+    </div>
+    <div class="board">
+    <button onclick="onNewRoom()">New Room</button><hr>
+    <input type="text" id="room_name_input"><br>
+    <button onclick="onJoinRoom()">Join Room</button>
+    </div>
+{% endblock %}
+{% block foot %}
+    {{ block.super }}
+    <script src="{% static 'js/chatroom.js' %}">
+    </script>
+{% endblock %}

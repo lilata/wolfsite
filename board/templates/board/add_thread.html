@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+{% block title %}
+    New Thread
+{% endblock %}
+
+{% block body %}
+    <div class="general-board">
+    <form enctype='multipart/form-data' action="{% url 'board_add_thread' %}" method="POST">
+    {% csrf_token %}
+        Text:<br>
+        <textarea style="resize: none"
+                  name="text" cols="30" rows="10"></textarea>
+        <br>
+        Image: <input type="file" name="file">
+        <hr>
+        <button class="pure-button" type="submit">Submit!</button>
+    </form>
+    </div>
+{% endblock %}

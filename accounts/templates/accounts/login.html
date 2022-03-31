@@ -1,0 +1,31 @@
+{% extends 'common/base.html' %}
+{% load static %}
+{% block title %}
+    Login
+{% endblock %}
+{% block body %}
+    {{ block.super }}
+    <div style="text-align: center">
+        <img src="{% static 'img/wolftao_inverted.png' %}" alt="" width="300vw" height="300vh"
+             style="margin: 0 auto">
+    </div>
+    <div class="board">
+    <h1>Login</h1>
+    <div style="font-size: 1.3em">
+        <h2>You need to login to use our services!</h2>
+        <h2>GitHub</h2>
+        <a class='pure-button' href="{% url 'github_login' %}">
+            Login with Github
+        </a>
+        <h2>Or</h2>
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            username: <input type="text" name="username"><br>
+            password: <input type="password" name="password"><br>
+            <button type="submit">Login!</button>
+        </form>
+    </div>
+
+{% endblock %}
+
+</div>
